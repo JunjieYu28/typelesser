@@ -3,32 +3,53 @@
 
 Usage (run on Windows):
     pip install -r requirements.txt
-    pyinstaller build.spec
+    python -m PyInstaller build.spec --clean --noconfirm
 """
 
 import os
 import sys
-import importlib
 
 block_cipher = None
-project_root = SPECPATH  # SPECPATH is already the directory containing the .spec file
+project_root = SPECPATH
+
+# ── Collect PySide6 plugins (platforms/qwindows.dll etc.) ─────────────
+pyside6_datas = []
+pyside6_binaries = []
+try:
+    import PySide6
+    pyside6_dir = os.path.dirname(PySide6.__file__)
+
+    # plugins/ directory (contains platforms/, styles/, imageformats/ …)
+    plugins_src = os.path.join(pyside6_dir, "plugins")
+    if os.path.isdir(plugins_src):
+        pyside6_datas.append((plugins_src, os.path.join("PySide6", "plugins")))
+
+    # Collect all .dll / .pyd next to PySide6 package (Qt6Core.dll etc.)
+    for f in os.listdir(pyside6_dir):
+        full = os.path.join(pyside6_dir, f)
+        if os.path.isfile(full) and f.lower().endswith((".dll", ".pyd")):
+            pyside6_binaries.append((full, "PySide6"))
+except Exception:
+    pass
 
 # ── Collect sounddevice's bundled PortAudio DLLs ──────────────────────
 sd_datas = []
 try:
     import sounddevice
     sd_dir = os.path.dirname(sounddevice.__file__)
-    sd_datas = [(os.path.join(sd_dir, "_sounddevice_data"), "_sounddevice_data")]
+    sd_data_dir = os.path.join(sd_dir, "_sounddevice_data")
+    if os.path.isdir(sd_data_dir):
+        sd_datas.append((sd_data_dir, "_sounddevice_data"))
 except ImportError:
     pass
 
 a = Analysis(
     [os.path.join(project_root, "main.py")],
     pathex=[project_root],
-    binaries=[],
+    binaries=pyside6_binaries,
     datas=[
         (os.path.join(project_root, "assets"), "assets"),
-    ] + sd_datas,
+    ] + pyside6_datas + sd_datas,
     hiddenimports=[
         "PySide6.QtCore",
         "PySide6.QtGui",
@@ -90,7 +111,7 @@ a = Analysis(
     ],
     hookspath=[],
     hooksconfig={},
-    runtime_hooks=[],
+    runtime_hooks=[os.path.join(project_root, "runtime_hook_qt.py")],
     excludes=[
         # ── Conflicting Qt binding ────────────────────────────
         "PyQt5",
@@ -121,7 +142,6 @@ a = Analysis(
         "zmq",
         "tornado",
         "babel",
-        "sphinx",
         "lib2to3",
         "setuptools",
         "pkg_resources",
@@ -149,11 +169,11 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,              # windowed app, no console
+    console=False,
     disable_windowed_traceback=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
     # icon=os.path.join(project_root, "assets", "icons", "app.ico"),
-    uac_admin=True,             # keyboard library needs admin on Windows
+    uac_admin=True,
 )
