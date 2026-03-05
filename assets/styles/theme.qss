@@ -1,0 +1,284 @@
+/* ── Typelesser Global Theme ── */
+/* Matches the Typeless desktop app aesthetic: light background, */
+/* rounded cards, clean typography, blue accent. */
+
+/* ── Base ─────────────────────────────────────────────────── */
+* {
+    font-family: "Microsoft YaHei UI", "Segoe UI", "Noto Sans SC", sans-serif;
+    font-size: 14px;
+    color: #1a1a2e;
+}
+
+QMainWindow, QWidget#centralWidget {
+    background-color: #ffffff;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+QWidget#sidebar {
+    background-color: #f5f5f7;
+    border-right: 1px solid #e8e8ec;
+}
+
+QLabel#sidebarLogo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a1a2e;
+    padding: 24px 20px 8px 20px;
+}
+
+QLabel#sidebarBadge {
+    font-size: 11px;
+    color: #ffffff;
+    background-color: #3b82f6;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-weight: 600;
+}
+
+/* ── Nav Items ────────────────────────────────────────────── */
+QPushButton.navItem {
+    text-align: left;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    font-size: 15px;
+    color: #4a4a5a;
+}
+
+QPushButton.navItem:hover {
+    background-color: #eaeaef;
+}
+
+QPushButton.navItem[active="true"] {
+    background-color: #e4e4ea;
+    color: #1a1a2e;
+    font-weight: 600;
+}
+
+/* ── Bottom Icon Bar ──────────────────────────────────────── */
+QPushButton.bottomIcon {
+    border: none;
+    background: transparent;
+    padding: 8px;
+    border-radius: 6px;
+    color: #8a8a9a;
+    font-size: 18px;
+}
+
+QPushButton.bottomIcon:hover {
+    background-color: #eaeaef;
+    color: #1a1a2e;
+}
+
+/* ── Page Content ─────────────────────────────────────────── */
+QWidget#pageContainer {
+    background-color: #ffffff;
+}
+
+QLabel.pageTitle {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1a1a2e;
+    padding: 0px;
+    margin: 0px;
+}
+
+QLabel.pageSubtitle {
+    font-size: 14px;
+    color: #7a7a8a;
+    padding: 0px;
+}
+
+/* ── Stat Cards ───────────────────────────────────────────── */
+QFrame.statCard {
+    background-color: #ffffff;
+    border: 1px solid #e8e8ec;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+QLabel.statValue {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1a1a2e;
+}
+
+QLabel.statUnit {
+    font-size: 14px;
+    color: #7a7a8a;
+    font-weight: normal;
+}
+
+QLabel.statLabel {
+    font-size: 13px;
+    color: #9a9aaa;
+}
+
+/* ── Info Cards (referral / affiliate) ────────────────────── */
+QFrame.infoCard {
+    border-radius: 16px;
+    padding: 24px;
+}
+
+QFrame.infoCardBlue {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+        stop:0 #e8f0fe, stop:1 #f0f4ff);
+}
+
+QFrame.infoCardPink {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+        stop:0 #fef0f0, stop:1 #fff4f0);
+}
+
+QLabel.infoCardTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1a1a2e;
+}
+
+QLabel.infoCardText {
+    font-size: 13px;
+    color: #5a5a6a;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+QPushButton.primaryButton {
+    background-color: #3b5afe;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+QPushButton.primaryButton:hover {
+    background-color: #2d4bdb;
+}
+
+QPushButton.primaryButton:pressed {
+    background-color: #2240c4;
+}
+
+QPushButton.outlineButton {
+    background-color: transparent;
+    border: 1px solid #e0e0e4;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #4a4a5a;
+}
+
+QPushButton.outlineButton:hover {
+    background-color: #f5f5f7;
+    border-color: #ccc;
+}
+
+/* ── History Entry ────────────────────────────────────────── */
+QFrame.historyEntry {
+    background-color: #fafafa;
+    border: 1px solid #f0f0f4;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 4px;
+}
+
+QLabel.historyTime {
+    font-size: 12px;
+    color: #9a9aaa;
+    min-width: 70px;
+}
+
+QLabel.historyText {
+    font-size: 14px;
+    color: #2a2a3e;
+}
+
+/* ── Dictionary Tab Bar ───────────────────────────────────── */
+QPushButton.tabItem {
+    border: 1px solid #e0e0e4;
+    border-radius: 16px;
+    padding: 6px 16px;
+    font-size: 13px;
+    color: #5a5a6a;
+    background: transparent;
+}
+
+QPushButton.tabItem:hover {
+    background-color: #f0f0f4;
+}
+
+QPushButton.tabItem[active="true"] {
+    border-color: #1a1a2e;
+    color: #1a1a2e;
+    font-weight: 600;
+}
+
+/* ── Hotkey Badge ─────────────────────────────────────────── */
+QLabel.hotkeyBadge {
+    background-color: #f0f0f4;
+    border: 1px solid #dcdce2;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #3a3a4a;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+QScrollBar:vertical {
+    width: 6px;
+    background: transparent;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background: #d0d0d8;
+    border-radius: 3px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #b0b0b8;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    height: 0px;
+}
+
+/* ── Version Label ────────────────────────────────────────── */
+QLabel.versionLabel {
+    font-size: 12px;
+    color: #b0b0b8;
+}
+
+/* ── Empty State ──────────────────────────────────────────── */
+QLabel.emptyTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #3a3a4a;
+}
+
+QLabel.emptyText {
+    font-size: 13px;
+    color: #9a9aaa;
+    line-height: 1.6;
+}
+
+/* ── Floating Status Window ───────────────────────────────── */
+QFrame#floatingStatus {
+    background-color: #1a1a2e;
+    border-radius: 12px;
+    padding: 8px 16px;
+}
+
+QLabel#floatingStatusText {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+}
