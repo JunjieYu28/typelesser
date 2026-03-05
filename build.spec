@@ -11,7 +11,7 @@ import sys
 import importlib
 
 block_cipher = None
-project_root = os.path.dirname(os.path.abspath(SPECPATH))
+project_root = SPECPATH  # SPECPATH is already the directory containing the .spec file
 
 # ── Collect sounddevice's bundled PortAudio DLLs ──────────────────────
 sd_datas = []

@@ -12,7 +12,7 @@ if errorlevel 1 (
 )
 
 echo [2/3] Building Typelesser.exe with PyInstaller...
-pyinstaller build.spec --clean --noconfirm
+python -m PyInstaller build.spec --clean --noconfirm
 if errorlevel 1 (
     echo ERROR: PyInstaller build failed.
     pause
